@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:,">
+<title>林新翔 · 作品集 — 懂数据，懂 AI 的海外创意人</title>
+<!-- Fonts: system stack only. The page previously loaded Noto Sans SC / Space
+     Grotesk from Google Fonts; that host is unreachable on some networks,
+     which left the page stuck on a blank load. No external requests now. -->
+<style>
+:root{
+  --bg:#0e1013; --bg2:#12151a; --panel:#171b21; --panel2:#1c212a;
+  --line:#262d38; --line2:#333d4d;
+  --text:#f2f3f0; --muted:#a7b0bd; --faint:#7c8696;
+  --accent:#cdea45; --accent-ink:#11150a; --teal:#5eead4; --amber:#fbbf24;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.en{font-family:sans-serif;letter-spacing:.02em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(14,16,19,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;font-size:15px;white-space:nowrap}
+.brand span{color:var(--accent)}
+.topnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.topnav a:hover,.topnav a.active{color:var(--text);background:var(--panel2)}
+
+/* hero */
+.hero{padding:44px 0 18px;border-bottom:1px solid var(--line);background:
+  radial-gradient(700px 320px at 85% -60px, rgba(205,234,69,.10), transparent 60%),
+  radial-gradient(600px 300px at -10% 0, rgba(94,234,212,.06), transparent 60%), var(--bg)}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tag{font-size:12px;font-weight:700;padding:5px 11px;border:1px solid var(--line2);border-radius:999px;color:var(--muted)}
+.tag.hot{border-color:var(--accent);color:var(--accent)}
+.hero h1{font-size:clamp(44px,9vw,76px);line-height:1.02;margin:0;font-weight:900;letter-spacing:-.01em}
+.hero h1 .thin{display:block;font-size:clamp(22px,4.6vw,36px);font-weight:700;color:var(--muted);margin-top:14px;letter-spacing:0}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{max-width:640px;color:var(--muted);font-size:16px;margin:20px 0 0}
+.hero-sub strong{color:var(--text)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;font-size:14px;color:var(--muted)}
+.hero-meta b{color:var(--text);font-weight:700}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none;border:1px solid var(--line2);background:var(--panel);cursor:pointer;color:var(--text)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:active{transform:scale(.98)}
+.btn small{font-weight:500;opacity:.75}
+
+/* stats */
+.stats{display:grid;grid-template-columns:1fr;gap:12px;margin:30px 0 6px;align-items:start}
+@media(min-width:760px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.stat .num{font-family:sans-serif;font-size:clamp(30px,5vw,40px);font-weight:700;line-height:1;color:var(--accent)}
+.stat .num small{font-size:18px;color:var(--text)}
+.stat h3{margin:12px 0 6px;font-size:15px}
+.stat p{margin:0;font-size:13.5px;color:var(--muted)}
+.stat .src{margin-top:10px;font-size:12px;color:var(--faint)}
+.chain-list{list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--line)}
+.chain-list li{border-bottom:1px solid var(--line)}
+.chain-list li:last-child{border-bottom:0}
+.chain-list a{display:flex;align-items:center;gap:8px;padding:7px 2px;min-height:38px;text-decoration:none}
+.chain-list a:hover .chain-name,.chain-list a:active .chain-name{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.chain-name{font-weight:800;font-size:13.5px;color:var(--text);white-space:nowrap}
+.chain-steps{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chain-arr{margin-left:auto;color:var(--accent);font-weight:900;font-size:14px;flex-shrink:0}
+
+/* sections */
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+/* tighter junctions around 01: the hero runs straight into AI 能力, and
+   01's tail row runs straight into 02 — no large black band either side */
+#ai-ability{padding-top:20px;padding-bottom:24px}
+#case-geo{padding-top:24px}
+.sec-head{margin-bottom:20px}
+.case-no{font-family:sans-serif;font-size:13px;font-weight:700;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+.sec-head h2{font-size:clamp(26px,5.4vw,38px);line-height:1.2;margin:8px 0 10px;font-weight:900}
+.sec-head p{color:var(--muted);max-width:680px;margin:0;font-size:15px}
+.badge{display:inline-block;font-size:12px;font-weight:800;padding:4px 10px;border-radius:6px;background:rgba(205,234,69,.14);color:var(--accent);margin-left:8px;vertical-align:middle}
+.badge.gray{background:var(--panel2);color:var(--muted)}
+h3.blk{font-size:17px;margin:20px 0 10px;font-weight:900}
+h3.blk::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);margin-right:10px;vertical-align:2px}
+p.body{color:var(--muted);font-size:15px;max-width:760px}
+p.body strong,li strong{color:var(--text)}
+
+/* brand case kpis */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0 6px;align-items:start}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1000px){.kpis{grid-template-columns:repeat(5,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi .n{font-family:sans-serif;font-size:26px;font-weight:700;line-height:1.1;color:var(--accent)}
+.kpi .n small{font-size:14px;color:var(--text)}
+.kpi h3{margin:8px 0 4px;font-size:14px}
+.kpi p{margin:0;font-size:12.5px;color:var(--muted)}
+.stageflow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 2px}
+.stage{background:var(--panel2);border:1px solid var(--line2);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:700}
+.pdflink{margin-top:16px;border:1px dashed var(--line2);border-radius:14px;padding:14px 18px;background:var(--bg2);color:var(--muted);font-size:14px}
+.pdflink b{color:var(--text)}
+
+/* placeholder video */
+.ph{border:1.5px dashed var(--line2);border-radius:var(--radius);background:repeating-linear-gradient(45deg,#14181e 0 14px,#13171d 14px 28px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:20px;color:var(--muted)}
+.ph .play{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;background:var(--panel)}
+.ph .play svg{margin-left:3px}
+.ph b{color:var(--text);font-size:15px}
+.ph span{font-size:12.5px;color:var(--faint)}
+.ph.r916{aspect-ratio:9/16;max-height:560px;width:100%}
+.ph.r169{aspect-ratio:16/9;width:100%}
+.ph-strip{aspect-ratio:21/9}
+
+/* embedded videos */
+.vid{margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
+.vid video{display:block;width:100%;background:#000}
+.vid.portrait video{aspect-ratio:9/16;max-height:480px;object-fit:contain}
+.vid.r34 video{aspect-ratio:3/4;max-height:480px;object-fit:contain}
+.vid-hero{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line2);background:#000}
+.vid-hero video{display:block;width:100%;aspect-ratio:9/16;max-height:560px;object-fit:contain;background:#000}
+.vid-hero.r34 video{aspect-ratio:3/4}
+.vid-open{display:block;padding:9px 12px;font-size:12.5px;color:var(--muted);text-decoration:none;background:var(--panel);border-top:1px solid var(--line)}
+.vid-open b{color:var(--accent);font-weight:700}
+
+/* case layout */
+.case-grid{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:900px){.case-grid{grid-template-columns:300px 1fr;gap:32px;align-items:start}.case-grid .sticky{position:sticky;top:76px}}
+
+/* strategy card */
+.strat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.strat .big{font-size:19px;font-weight:900;line-height:1.45;margin:0 0 8px}
+.strat p{color:var(--muted);font-size:14px;margin:0}
+.quote{border-left:3px solid var(--accent);background:var(--panel);border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;margin:22px 0;font-size:16px;font-weight:700;line-height:1.7}
+.quote small{display:block;margin-top:8px;font-weight:500;color:var(--faint);font-size:13px}
+
+/* funnel */
+.funnel{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fstep{background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:9px 14px;font-size:14px;font-weight:700}
+.fstep small{display:block;font-weight:400;color:var(--faint);font-size:12px}
+.farr{color:var(--accent);font-weight:900}
+
+/* timeline */
+.tl{position:relative;margin:6px 0 0;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line2)}
+.tl-item{position:relative;padding:10px 0 10px 8px;cursor:pointer;border-radius:10px}
+.tl-item::before{content:"";position:absolute;left:-21px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2.5px solid var(--faint)}
+.tl-item.on::before{border-color:var(--accent);background:var(--accent)}
+.tl-item .t{font-family:sans-serif;font-weight:700;color:var(--accent);font-size:14px;margin-right:10px}
+.tl-item b{font-size:15px}
+.tl-item p{margin:3px 0 0;color:var(--muted);font-size:13.5px}
+.tl-item .say{margin-top:5px;font-size:13px;color:var(--teal);font-family:sans-serif}
+
+/* shot table */
+.shots{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.shot{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:13px 16px;background:var(--panel);border-bottom:1px solid var(--line);font-size:14px}
+.shot:last-child{border-bottom:0}
+.shot .n{font-family:sans-serif;font-weight:700;color:var(--faint);font-size:18px}
+.shot b{display:block}
+.shot span{color:var(--muted);font-size:13px}
+.shot .enline{color:var(--teal);font-size:13px}
+
+/* deliverables */
+.dgrid{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
+@media(min-width:700px){.dgrid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.dgrid{grid-template-columns:repeat(3,1fr)}}
+.dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.dcard .en{font-weight:700;font-size:15px;color:var(--text)}
+.dcard p{margin:5px 0 0;font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--faint);background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:14px}
+.note b{color:var(--amber)}
+.tool-groups{margin-top:16px;border-top:1px solid var(--line);padding-top:16px;text-align:left}
+.tool-groups>h4{margin:0 0 4px;font-size:14px;color:var(--text)}
+.tool-groups>p.intro{margin:0 0 14px;font-size:13px;color:var(--muted)}
+.tool-group{margin:0 0 14px}
+.tool-group:last-of-type{margin-bottom:10px}
+.tool-group h5{margin:0 0 7px;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--accent)}
+.tool-list{list-style:none;margin:0;padding:0}
+.tool-list li{margin:0 0 7px;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.tool-list li:last-child{margin-bottom:0}
+.tool-list li b{color:var(--text);font-weight:700}
+.tool-note{margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line2);font-size:13.5px;line-height:1.6;color:var(--text)}
+.tool-note strong{color:var(--accent)}
+
+/* 07 tooling card — compact layout */
+.card.span-all{grid-column:1/-1}
+.tooling-compact .tool-groups{margin-top:8px;padding-top:8px}
+.tooling-compact .tool-groups>h4{margin:0 0 2px}
+.tooling-compact .tool-groups>p.intro{display:none}
+.tg-grid{display:grid;grid-template-columns:1fr;gap:0 22px;align-items:start}
+@media(min-width:640px){.tg-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.tg-grid{grid-template-columns:repeat(3,1fr)}}
+.tooling-compact .tool-group{margin:0 0 4px;display:flex;gap:6px;align-items:baseline}
+.tooling-compact .tool-group h5{margin:0;flex-shrink:0}
+.tooling-compact .tool-list li{display:inline;margin:0;font-size:13px;line-height:1.35}
+.tooling-compact .tool-list li+li::before{content:"、";color:var(--faint)}
+.tooling-compact .tool-note{margin-top:2px;padding-top:6px}
+.rec-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;align-items:start}
+@media(max-width:560px){.rec-row{grid-template-columns:repeat(2,1fr)}.rec-row .rec-item:last-child{grid-column:1/-1}}
+.rec-item .rec-cap{font-size:12px;color:var(--muted);margin:0 0 6px;line-height:1.45}
+.rec-item .rec-cap b{color:var(--text)}
+.rec-vid{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000}
+.rec-vid video{display:block;width:100%;aspect-ratio:9/16;max-height:300px;object-fit:contain;background:#000}
+.rec-vid .vid-open{padding:6px 9px;font-size:11.5px}
+
+/* 01 AI ability — rebalanced card layout: balanced rows, no stretched blanks */
+.ai-stack{display:flex;flex-direction:column;gap:12px}
+.ai-stack .cards{margin:0}
+@media(min-width:820px){#ai-ability .ai-top{grid-template-columns:repeat(3,1fr)}}
+.ai-wide .ai-cols{display:grid;grid-template-columns:1fr;gap:10px;margin-top:2px}
+.ai-wide .ai-cols p{margin:0;color:var(--muted);font-size:14px}
+.ai-wide .ai-cols p strong{color:var(--text)}
+@media(min-width:900px){.ai-wide .ai-cols{grid-template-columns:repeat(3,1fr);gap:20px}.ai-wide .ai-cols p{border-left:1px solid var(--line);padding-left:16px}.ai-wide .ai-cols p:first-child{border-left:0;padding-left:0}}
+/* 01 tail row: the SINCE 2022 card is the shortest of its row — a slightly
+   narrower column wraps its text one line longer, shrinking the blank
+   under it; all three cards keep their own content height */
+#ai-ability .ai-tail{align-items:start}
+@media(min-width:1000px){#ai-ability .ai-tail{grid-template-columns:.85fr 1.075fr 1.075fr}}
+
+/* 06 AI shorts — cards hug their own content height; a short card sharing a
+   row with the tall portrait-video card must not stretch and leave a blank
+   area under its content (e.g. the AI comic card under its image) */
+#case3 .cards{align-items:start}
+
+/* 06 film trio — all three shorts (《光织丝路》《迟到一千年的信》《丁香钟》)
+   sit side by side in one three-column group via the generic .cards.c3
+   rules. Each card keeps its own content height (align-items:start) and
+   nothing is anchored to the card bottom, so the text-only 《丁香钟》 card
+   ends naturally right after its download button */
+#case3 .cards.film-trio{align-items:start}
+.film-card .film-foot{margin-top:14px}
+.film-card .film-foot .dlrow{margin-top:0}
+.film-media{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.film-media img{width:100%;display:block}
+
+/* generic cards */
+.cards{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
+@media(min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.cards.c3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card h3{margin:0 0 8px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
+.card .dur{font-family:sans-serif;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.card .ph{margin-top:14px;border-radius:12px}
+.shot-fig{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.shot-fig img{width:100%;display:block;background:var(--panel2)}
+.shot-fig figcaption{font-size:12.5px;color:var(--muted);padding:9px 14px}
+.mini-ph{aspect-ratio:16/9}
+ul.tight{margin:0;padding-left:20px;color:var(--muted);font-size:15px}
+ul.tight li{margin:7px 0}
+
+/* flow */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}
+.fnode{flex:1 1 140px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:14px}
+.fnode b{display:block;font-size:14.5px}
+.fnode span{color:var(--muted);font-size:12.5px}
+
+/* method */
+.method{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
+@media(min-width:800px){.method{grid-template-columns:repeat(3,1fr)}}
+.principle{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:var(--radius);padding:20px}
+.principle .en{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.14em}
+.principle h3{margin:8px 0 6px;font-size:16px}
+.principle p{margin:0;color:var(--muted);font-size:14px}
+
+/* image galleries — NO CROPPING ANYWHERE: every image renders at its
+   natural aspect ratio (width:100%, height:auto). Galleries use CSS
+   multi-column masonry so mixed-ratio images pack tightly with no
+   grid-row gaps and no stretched empty cells, on desktop and phone */
+.gal{columns:2;column-gap:10px;margin:12px 0 0}
+@media(min-width:760px){.gal{columns:3}.gal.g2{columns:2}.gal.g4{columns:4}}
+.gal figure{margin:0 0 10px;break-inside:avoid;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gal img{width:100%;height:auto;display:block;background:var(--panel2)}
+.gal figcaption{font-size:12px;color:var(--muted);padding:8px 10px}
+/* sequential galleries (numbered mains, storyboard sets, comic pages)
+   stay a real grid so their order reads correctly row by row — still
+   fully uncropped; only unordered photo walls use the masonry packing */
+.gal.gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:760px){.gal.gal-grid{grid-template-columns:repeat(3,1fr)}.gal.gal-grid.g2{grid-template-columns:repeat(2,1fr)}.gal.gal-grid.g4{grid-template-columns:repeat(4,1fr)}}
+.gal.gal-grid figure{margin:0}
+/* the 8100px case-study long image is shown in full, uncropped, in a
+   centred reading column (it is still a link to the full-size file) */
+.longview{display:block;max-width:400px;margin:0 auto;border:1px solid var(--line2);border-radius:var(--radius);overflow:hidden;text-decoration:none;background:var(--panel)}
+.longview img{width:100%;height:auto;display:block}
+.longview span{display:block;padding:12px 16px;font-size:13.5px;color:var(--muted)}
+.longview span b{color:var(--accent)}
+.dlrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+footer{padding:36px 0 48px}
+footer .quote{margin-top:0}
+.foot-links{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+@media(min-width:700px){.foot-links{flex-direction:row;align-items:flex-start}}
+.flink{flex:1;border:1px dashed var(--line2);border-radius:14px;padding:16px 18px;color:var(--muted);font-size:14px;background:var(--bg2)}
+.flink b{color:var(--text);display:block;margin-bottom:4px}
+.wip{margin-top:22px;font-size:13px;color:var(--faint);text-align:center}
+/* craft: the 6 foundation cards are grouped by type into separate rows
+   (videos / image cards / text cards) so no row is stretched by a tall
+   neighbour; both card images show in full at their natural aspect
+   ratio — no height cap, no cropping — so the image row's cards sit
+   at their own content heights rather than being forced equal */
+#craft .craft-img img{width:100%;height:auto;display:block}
+
+/* ---- blank-space sweep: fill partial grid rows instead of leaving
+   empty cells (layout only; no content changes) ---- */
+/* phone: in a 2-col KPI row, an odd last item spans the full row
+   instead of leaving one empty cell beside it (galleries are masonry
+   columns now and pack without gaps on their own) */
+@media(max-width:759px){
+  .kpis .kpi:last-child{grid-column:1/-1}
+}
+/* tablet widths: 3-card rows fall back to 2 columns — let an odd last
+   card take the full row so no half-row gap remains */
+@media(min-width:700px) and (max-width:999px){
+  .cards.c3:not(.film-trio)>.card:last-child:nth-child(odd){grid-column:1/-1}
+  .dgrid .dcard:last-child{grid-column:1/-1}
+}
+/* tablet widths: the 5 KPI tiles reflow 3+2 on a 6-col track so both
+   rows are completely filled (3 x span-2, then 2 x span-3) */
+@media(min-width:760px) and (max-width:999px){
+  .kpis{grid-template-columns:repeat(6,1fr)}
+  .kpis .kpi{grid-column:span 2}
+  .kpis .kpi:nth-child(4),.kpis .kpi:nth-child(5){grid-column:span 3}
+}
+/* the 7-tile class-VI gallery needs no fill hack any more: masonry
+   columns pack the odd tile in with no empty cell and no ratio change */
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,80px);background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:14px;padding:11px 22px;border-radius:999px;transition:transform .3s;z-index:99}
+.toast.show{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toast{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">林新翔 <span>· PORTFOLIO</span></div>
+    <nav class="topnav" id="topnav">
+      <a href="#ai-ability">AI 能力</a><a href="#case-geo">小裂变 GEO</a><a href="#case2">海外一级代理商实习</a><a href="#case-ugc">海外UGC视频</a><a href="#case4">运营全链路</a><a href="#case3">AI 短片</a><a href="#case-brand">品牌 AI 运营</a><a href="#craft">基本功</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-tags">
+      <span class="tag hot">2027 届 · 校招求职中</span>
+      <span class="tag">南京邮电大学通达学院 · 广告学本科</span>
+      <span class="tag">年级前 30%</span>
+      <span class="tag">期望城市：南京 / 杭州 / 深圳</span>
+    </div>
+    <h1>林新翔<span class="thin">懂数据，懂 AI 的<em>海外创意人</em></span></h1>
+    <p class="hero-sub">求职意向：<strong>海外效果广告创意编导 / TikTok 电商内容</strong>。做过海外一级代理商的编导，自己跑过一家抖店的运营全链路——创意、数据、AI 和生意，我都下场做过。</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">$60,000<small> / 月</small></div>
+        <h3>海外素材单月消耗</h3>
+        <p>TikTok / Kwai 海外一级广告代理商编导实习期间，参与素材跑出的单月消耗量级。</p>
+        <div class="src">来源：2026.07–09 实习 · 北京快鸟先飞科技有限公司（杭州）</div>
+      </div>
+      <div class="stat">
+        <div class="num">90,000<small> 单条最高</small></div>
+        <h3>自有账号 · 总浏览 25 万+</h3>
+        <p>自有短视频账号运营半个月，单条最高 9 万浏览，总浏览 25 万+，内容以摄影与调色教程为主。</p>
+        <div class="src">来源：本人自有账号数据</div>
+      </div>
+      <div class="stat">
+        <div class="num">全链路<small> ×4</small></div>
+        <ul class="chain-list">
+          <li><a href="#case4"><span class="chain-name">运营全链路</span><span class="chain-steps">选品—上架—投流—复盘</span><span class="chain-arr">→</span></a></li>
+          <li><a href="#case-brand"><span class="chain-name">内容运营全链路</span><span class="chain-steps">获客—方案—素材—复盘—AI 投流</span><span class="chain-arr">→</span></a></li>
+          <li><a href="#ai-ability"><span class="chain-name">素材生产全链路</span><span class="chain-steps">脚本—提示词—生成—剪辑—交付</span><span class="chain-arr">→</span></a></li>
+          <li><a href="#craft"><span class="chain-name">拍摄全链路</span><span class="chain-steps">分镜—拍摄—调色—交付</span><span class="chain-arr">→</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <button class="btn primary" id="copyMail" type="button">✉ linxx8393@gmail.com <small>点击复制</small></button>
+      <a class="btn" href="#ai-ability">直接看 AI 能力 ↓</a>
+    </div>
+    <p style="font-size:13px;color:var(--faint);margin:14px 0 0">电话 / 微信：<span style="color:var(--text);font-weight:700">13218968393</span>（电话微信同号）</p>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- ============ 01 AI ABILITY ============ -->
+<section id="ai-ability">
+  <div class="sec-head">
+    <div class="case-no">01 — AI Ability</div>
+    <h2>AI 能力<span class="badge">单列板块</span></h2>
+    <p>以下能力均来自两个已落地项目：海外效果广告实习与自营水晶品牌运营。每项只写会做什么、在哪个项目里用过；开发中的小程序与 AI 选品模块不计入已完成能力，单独标注在板块末尾。</p>
+  </div>
+
+  <div class="ai-stack">
+  <div class="cards c3 ai-top">
+    <div class="card">
+      <div class="dur">01 · CONTENT</div>
+      <h3>内容生产</h3>
+      <p>写双语脚本、制作 AI UGC 广告成片。建立提示词库，脚本、口播与画面提示词按固定规范编写，同一需求减少重复生成（俗称「抽卡」）。</p>
+      <p style="margin-top:8px">用过：海外实习的 TikTok / Kwai 素材、水晶品牌的图文与口播文案。</p>
+    </div>
+    <div class="card">
+      <div class="dur">02 · VISUAL STANDARD</div>
+      <h3>视觉生产规范</h3>
+      <p>为独版产品制定展示图规范：3 种版式模板、4 种背景标准、13 条带编号的提示词。产品本体用实拍，AI 只生成背景与氛围图，纹理与实物保持一致。</p>
+      <p style="margin-top:8px">用过：水晶品牌首波 15 款展示图，单条约 20–30 分钟出图。</p>
+    </div>
+    <div class="card">
+      <div class="dur">03 · GEO / CONTENT ASSETS</div>
+      <h3>内容资产与 GEO</h3>
+      <p>先建问题库、再批量生产内容：把用户在 AI 平台上会问的问题先列全，再逐题写成稿。158 篇成稿已全量质检，编号、价格、材质口径逐篇核对；同题保留两个版本，按平台规则分发。</p>
+      <p style="margin-top:8px">用过：水晶品牌的 GEO 内容体系（知乎、公众号等平台）。</p>
+    </div>
+  </div>
+    <div class="card ai-wide">
+      <div class="dur">04 · AUTOMATION</div>
+      <h3>发布自动化</h3>
+      <div class="ai-cols">
+      <p><strong>用在哪：</strong>给自营水晶品牌做 GEO（生成式引擎优化，也就是让 AI 搜索和 AI 助手在回答问题时更容易提到某个品牌）。目标是让用户在豆包、DeepSeek 这类 AI 工具里问「水晶手串怎么选」「独版水晶是什么」时，AI 的回答能提到我的品牌，并引用我发出去的内容。</p>
+      <p><strong>每日自动发布：</strong>搭了 2 个定时任务，每天自动在知乎发内容，不用逐条手动操作。一个是「情境层」，发从真实生活情境切入的问答（比如分手纪念、考研陪伴这类日常场景）；另一个是「直接层」，发水晶选购类的问答（比如怎么挑选、怎么辨别真假）。每篇在发布前都会自动处理一遍，把具体价格、产品编号和购买引导句删掉——知乎对营销内容管得很严，带上这些容易被判成营销、删帖，所以先删干净再发。</p>
+      <p><strong>每周巡检：</strong>选出 10 个用户最常问的核心问题，去 4 个 AI 平台各问一遍，逐项记录我的品牌有没有被提名、发布的内容有没有被引用。2026-11-16 做第一次巡检，建立基线（也就是第一次的记录，作为之后对比的起点），之后每周重复一遍，对比提名和引用有没有变化，看这套内容投入有没有效果。</p>
+      </div>
+    </div>
+  <div class="cards">
+    <div class="card">
+      <div class="dur">05 · DATA &amp; MEDIA BUYING</div>
+      <h3>数据与投流</h3>
+      <p>用 AI 汇总投放数据与评论，按点击率、转化率、获客成本、投入产出复盘素材；改版一次只改一处，改完再投，确认是哪一处起的作用。投流环节采用 AI 投流：AI 核算单条利润、制定投放方案（预算与加量、停投规则），本人审核后执行，按数据迭代优化。</p>
+      <p style="margin-top:8px">用过：海外实习的素材迭代、水晶品牌的巨量千川投放。</p>
+    </div>
+    <div class="card">
+      <div class="dur">06 · DAILY OPS</div>
+      <h3>传统运营提效</h3>
+      <p>运营日常工作用 AI 工作流完成：卖点文案、私信话术与常见问题库、直播脚本与执行包、选品信息整理、对标账号拆解、排期与台账表格。AI 出初稿与整理，本人核对定版。</p>
+      <p style="margin-top:8px">用过：水晶品牌全店运营、抖店自营店的选品与上架管理。</p>
+    </div>
+  </div>
+    <div class="card span-all tooling-compact">
+      <div class="dur">07 · TOOLING</div>
+      <h3>工具与工作流搭建</h3>
+      <p>会用 ComfyUI 搭节点工作流：自己连节点、配模型与参数，跑通从输入到出图的完整链路，并用它做高清增强与局部重绘；在多模型画布（libTV）里按镜头需求选模型整合生成；用 Codex 把选品、台账与运营管理搭成可复用的工作台。用过：海外实习的素材生产、自营抖店与水晶品牌的日常运营。</p>
+      <div class="tool-groups">
+        <h4>用过的 AI 工具与大模型</h4>
+        <div class="tg-grid">
+        <div class="tool-group">
+          <h5>视频生成模型</h5>
+          <ul class="tool-list">
+            <li><b>Seedance系列</b></li>
+            <li><b>可灵</b></li>
+            <li><b>MiniMax（海螺AI）</b></li>
+            <li><b>Sora</b></li>
+            <li><b>Grok Imagine</b></li>
+          </ul>
+        </div>
+
+        <div class="tool-group">
+          <h5>创作平台</h5>
+          <ul class="tool-list">
+            <li><b>Runway</b></li>
+            <li><b>libTV</b></li>
+          </ul>
+        </div>
+
+        <div class="tool-group">
+          <h5>工作流平台</h5>
+          <ul class="tool-list">
+            <li><b>ComfyUI</b></li>
+            <li><b>RunningHub</b></li>
+          </ul>
+        </div>
+
+        <div class="tool-group">
+          <h5>大模型</h5>
+          <ul class="tool-list">
+            <li><b>ChatGPT</b></li>
+            <li><b>Gemini</b></li>
+            <li><b>Grok</b></li>
+            <li><b>Kimi</b></li>
+            <li><b>Qwen</b></li>
+            <li><b>豆包</b></li>
+            <li><b>DeepSeek</b></li>
+          </ul>
+        </div>
+
+        <div class="tool-group">
+          <h5>Agent</h5>
+          <ul class="tool-list">
+            <li><b>Codex</b></li>
+            <li><b>Muse</b></li>
+          </ul>
+        </div>
+
+        <div class="tool-group">
+          <h5>专业技能</h5>
+          <ul class="tool-list">
+            <li><b>提示词工程</b></li>
+            <li><b>Skill搭建</b></li>
+            <li><b>API接入与调用</b></li>
+            <li><b>工作流编排</b></li>
+            <li><b>模型选型</b></li>
+            <li><b>生成质检与成本控制</b></li>
+          </ul>
+        </div>
+
+        </div>
+        <p class="tool-note">持续跟进：国内外主流模型持续跟进</p>
+      </div>
+      <div class="rec-row">
+        <div class="rec-item">
+          <p class="rec-cap"><b>实录 · ComfyUI 工作流界面</b> · 7 秒</p>
+          <div class="rec-vid"><video controls playsinline preload="metadata" poster="assets/video/manga-record-poster.jpg" src="assets/video/manga-record.mp4" aria-label="ComfyUI 工作流操作实录 · 7 秒 · 工具使用能力展示"></video><a class="vid-open" href="assets/video/manga-record.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div>
+        </div>
+        <div class="rec-item">
+          <p class="rec-cap"><b>实录 · 抖店选品工作台</b> · 6 秒</p>
+          <div class="rec-vid"><video controls playsinline preload="metadata" poster="assets/video/screen-record-1-poster.jpg" src="assets/video/screen-record-1.mp4" aria-label="实录 · 抖店选品工作台 · 6 秒"></video><a class="vid-open" href="assets/video/screen-record-1.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div>
+        </div>
+        <div class="rec-item">
+          <p class="rec-cap"><b>实录 · GEO优化：知乎内容自动发布</b> · 6 秒</p>
+          <div class="rec-vid"><video controls playsinline preload="metadata" poster="assets/video/screen-record-2-poster.jpg" src="assets/video/screen-record-2.mp4" aria-label="实录 · GEO优化：知乎内容自动发布 · 6 秒"></video><a class="vid-open" href="assets/video/screen-record-2.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div>
+        </div>
+      </div>
+    </div>
+  <div class="cards c3 ai-tail">
+    <div class="card"><div class="dur">SINCE 2022</div><h3>持续使用 AI 工具</h3><p>2022 年起跟进 AI 工具更新；Codex 等 agent 用于选品整理、表格处理与内容生产等日常工作。</p></div>
+    <div class="card">
+      <div class="dur">HOW I SPLIT THE WORK</div>
+      <h3>人与 AI 的分工</h3>
+      <p>量大的活交给 AI：整理问题与数据、生成初稿与背景图、执行定时发布。判断由本人完成：定版、核对材质与价格、决定预算与是否停投。</p>
+      <p style="margin-top:8px">两个项目通用，无一环节是全自动交付。</p>
+    </div>
+    <div class="card">
+      <div class="dur">IN PROGRESS</div>
+      <h3>开发中（不计入已完成）</h3>
+      <p>获客型小程序（测试、抽奖、图鉴）与 AI 选品模块<span class="badge gray">开发中</span></p>
+      <p style="margin-top:8px">AI 选品按肤色、色系、预算出配串方案，材质描述人工核对。完成并上线后再移入正式能力清单。</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ============ 02 FLAGSHIP · XIAOLIEBIAN GEO ============ -->
+<section id="case-geo">
+  <div class="sec-head">
+    <div class="case-no">02 — Flagship · GEO Marketing</div>
+    <h2>小裂变 GEO 营销视频<span class="badge">主打案例</span></h2>
+    <p>64 秒 · 3:4 竖屏 · 小裂变 GEO 营销主题短片。整条片子由本人主导、Codex 执行，用一条自建的 AI 生产链完成——定题、文案、分镜、工具链打通、逐镜生成、质检修复到剪辑成片，六个环节全部由本人定标准、拍板与验收。</p>
+  </div>
+
+  <div class="case-grid">
+    <div class="sticky">
+      <div class="vid-hero r34">
+        <video controls playsinline preload="metadata" poster="assets/video/geo-xiaoliebian-poster.jpg" src="assets/video/geo-xiaoliebian.mp4" aria-label="小裂变 GEO 营销视频 · 64 秒 · 3:4"></video>
+        <a class="vid-open" href="assets/video/geo-xiaoliebian.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a>
+      </div>
+    </div>
+    <div>
+      <div class="strat">
+        <p class="big">制作策略：不靠单个工具碰运气，先把 AI 生产链搭通，再逐镜生产。</p>
+        <p>从企业获客场景切入，把「客户问 AI 时会不会推荐你」做成选题钩子；本人定题、定文案、定分镜，Codex 负责执行调用，生成结果逐镜抽帧验收，不达标就修复到达标为止。</p>
+      </div>
+
+      <h3 class="blk">制作方式 · 六个环节</h3>
+      <div class="shots">
+        <div class="shot"><div class="n">01</div><div><b>定题与文案</b><span>从企业获客场景切入，把「客户问 AI 时会不会推荐你」做成选题钩子；口播约 70 秒，按问题—原理—自测方法—产品介绍一条线走完。</span></div></div>
+        <div class="shot"><div class="n">02</div><div><b>分镜与风格</b><span>用 3 段参考录屏定形式，写实人物开场收尾、中段浅蓝动画界面加吉祥物讲解；文案拆成 18 个分镜逐镜对应口播，全片 3:4 竖屏，两版分镜图由本人拍板融合定稿。</span></div></div>
+        <div class="shot"><div class="n">03</div><div><b>打通工具链</b><span>自行安装即梦创作 CLI 与 Skill，让 Codex 直接调用即梦 Seedance 2.0 mini；CLI 是调用工具，Skill 是操作说明。</span></div></div>
+        <div class="shot"><div class="n">04</div><div><b>逐镜生成</b><span>以定稿分镜图为首帧，逐镜提示词分别锁定要动的部分和不能变的文字；先试生成 3 镜，验人物稳定、界面动作、片尾字可读，再推全量，18 镜共消耗 558 积分。</span></div></div>
+        <div class="shot"><div class="n">05</div><div><b>质检与修复</b><span>逐镜抽帧验收，查出 5 个镜头变字与图标错误，用原始清晰界面做运动跟随修复，保住已生成的人物动作与运镜。</span></div></div>
+        <div class="shot"><div class="n">06</div><div><b>剪辑与资产</b><span>约 93 秒素材在剪映里完成最终剪辑，合成口播、配乐与字幕成片；同步把品牌 Logo 与「AI＋星芒」图形抠成透明 PNG 素材包供剪辑调用。</span></div></div>
+      </div>
+      <p style="margin:14px 0 0;font-size:13.5px;color:var(--accent);font-weight:700">工具链搭建 · 逐镜提示词工程 · AI 生成质检与修复 · 积分成本控制</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 OVERSEAS AGENCY INTERNSHIP · CASE REVIEW ============ -->
+<section id="case2">
+  <div class="sec-head">
+    <div class="case-no">03 — Internship Case Review</div>
+    <h2>海外一级代理商实习 · 案例复盘<span class="badge">案例复盘版</span></h2>
+    <p>2026.07–09 · 北京快鸟先飞科技有限公司（杭州）· TikTok / Kwai 海外一级广告代理商 · 短视频编导实习。按案例复盘呈现：背景、目标、我做了什么、方法与结果量级。</p>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="dur">BACKGROUND · 背景</div><h3>海外效果广告的素材供给岗</h3><p>公司为 TikTok / Kwai 海外一级广告代理商，服务出海客户的效果广告投放。素材消耗速度快、版本需求量大，编导岗要同时接得住客户的卖点诉求和优化师的数据反馈——交片不是终点，跑量才是。</p></div>
+    <div class="card"><div class="dur">GOAL · 目标</div><h3>让素材能跑量、能迭代</h3><p>独立完成从脚本到成片的素材生产，并按投放数据持续迭代：每一批素材都要能回答「哪个 Hook 留得住人、哪一段掉转化」，而不是交完一条算一条。</p></div>
+  </div>
+
+  <h3 class="blk">我做了什么</h3>
+  <div class="cards">
+    <div class="card"><h3>全流程编导</h3><p>素材生产全链路一人完成：<strong>双语脚本</strong>、素材筛选、AI 生成、剪辑与多版本交付。脚本按海外用户的表达习惯写，不是把中文稿翻译一遍了事。</p></div>
+    <div class="card"><h3>三方对接</h3><p>日常对接<strong>商务、广告优化师与客户</strong>：客户给卖点，优化师给数据，我把两边翻译成下一版素材具体改什么。</p></div>
+    <div class="card"><h3>按数据复盘迭代</h3><p>盯 <span class="en">CTR / CVR / CPA / ROI / ROAS</span> 复盘每一批素材：哪个 Hook 留不住人、哪段转化掉链子，下一版就改哪，改版一次只动一处。</p></div>
+    <div class="card"><h3>沉淀成资产</h3><p>把跑通的写法沉淀为 <strong>prompt 库与 AI 工作流</strong>，让出片从「靠手感」变成可复用、可交接的流程。</p></div>
+  </div>
+
+  <h3 class="blk">方法</h3>
+  <ul class="tight">
+    <li><strong>双语脚本先行：</strong>先想清楚海外用户怎么说话、什么梗能懂，再落脚本，避免翻译腔。</li>
+    <li><strong>AI 视频工作流生产：</strong>提示词按固定规范编写，同一需求减少重复生成；生成后做质检与修复再交付。</li>
+    <li><strong>数据定位问题：</strong>用 CTR 看 Hook、用 CVR / CPA 看转化段落，把「感觉不好」拆成可改的具体镜头。</li>
+    <li><strong>单变量迭代：</strong>每版只改一处，改完再投，确认是哪一处起的作用，再沉淀进 prompt 库。</li>
+  </ul>
+
+  <h3 class="blk">结果量级</h3>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat">
+      <div class="num">$60,000<small> / 月</small></div>
+      <h3>素材单月消耗量级</h3>
+      <p>实习期间参与素材跑出的单月消耗量级，按参与账户与投放周期核算。</p>
+    </div>
+    <div class="stat">
+      <div class="num">2<small> 个平台</small></div>
+      <h3>TikTok / Kwai 双平台</h3>
+      <p>同一套复盘方法在两个海外平台的素材生产中跑通。</p>
+    </div>
+    <div class="stat">
+      <div class="num">5<small> 项指标</small></div>
+      <h3>CTR / CVR / CPA / ROI / ROAS</h3>
+      <p>每批素材按五项指标复盘，结论直接进入下一版的修改清单。</p>
+    </div>
+  </div>
+
+  <div class="note"><b>保密说明：</b>本段实习的原始素材与后台数据属公司内部资料，<b style="color:var(--text)">因保密要求，不便在本页公开，面试可详细口述</b>。在职与岗位信息以实习证明等正式文件为准；本页数据只写本人能自圆其说的量级，不列精确后台数值。</div>
+</section>
+
+<!-- ============ 04 OVERSEAS UGC VIDEO ============ -->
+<section id="case-ugc">
+  <div class="sec-head">
+    <div class="case-no">04 — Overseas UGC Video</div>
+    <h2>海外UGC视频</h2>
+  </div>
+
+  <h3 class="blk">洗车枪创意小广告 · 案例拆解</h3>
+  <div class="case-grid">
+    <div class="sticky">
+      <div class="vid portrait" style="margin-top:0">
+        <video controls playsinline preload="metadata" poster="assets/video/wash-gun-poster.jpg" src="assets/video/wash-gun.mp4" aria-label="洗车枪创意小广告 · 40 秒 · 9:16 竖版"></video>
+        <a class="vid-open" href="assets/video/wash-gun.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a>
+      </div>
+      <p style="font-size:13px;color:var(--faint);margin-top:10px">40 秒 · 9:16 竖版 · 英文对白与英文字幕 · TikTok Shop 带货向。</p>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px"><div class="dur">BACKGROUND · 背景</div><h3>无线洗车枪的 TikTok Shop 剧情短片</h3><p>产品为 21V 无线便携高压水枪（片中品牌 SEESE）：自带电池、不用接水管，可从水桶自吸供水。成片不做参数罗列，按英文剧情 UGC 的形式呈现——先有故事，再有产品。</p></div>
+
+      <div class="strat">
+        <p class="big">创意策略：先用剧情留人，再让卖点在剧情里逐个被验证。</p>
+        <p>开场抛生活钩子——上门服务人员索要小费，花字打出 “My husband refuses to tip anyone…” 制造好奇；随后由一句「先看看你干了什么活」转入演示：洗净的车、自吸供水、冲洗实测依次出现，卖点不靠口播宣称，靠画面逐个证实；最后以开箱与限时优惠收尾，导向 TikTok Shop 下单。</p>
+      </div>
+
+      <h3 class="blk">内容拆解 · 六段</h3>
+      <div class="shots">
+        <div class="shot"><div class="n">01</div><div><b>剧情钩子</b><span>服务人员上门结账、索要小费，花字抛出冲突，先留人、不谈产品。</span></div></div>
+        <div class="shot"><div class="n">02</div><div><b>成果先行</b><span>镜头切到洗得发亮的车，先给结果，再引出「怎么做到的」。</span></div></div>
+        <div class="shot"><div class="n">03</div><div><b>自吸供水演示</b><span>水枪从水桶抽水工作，一句 <span class="enline">“you don't need my hose”</span> 点出不用接水管的核心卖点。</span></div></div>
+        <div class="shot"><div class="n">04</div><div><b>冲洗实测</b><span>泡沫冲洗庭院垃圾桶，污渍被水流冲净，借人物台词 <span class="enline">“it's actually really strong”</span> 给出强度评价。</span></div></div>
+        <div class="shot"><div class="n">05</div><div><b>参数定格</b><span>产品特写叠加信息卡：21V 电池、1000 PSI、无需水管；适用场景列明汽车、垃圾桶、窗户、栅栏与露台。</span></div></div>
+        <div class="shot"><div class="n">06</div><div><b>开箱 + CTA</b><span>打开整套收纳箱，台词交代购自 TikTok Shop；尾卡以限时优惠与点击购买收口。</span></div></div>
+      </div>
+
+      <div class="card" style="margin-top:14px"><div class="dur">DELIVERABLE · 交付</div><h3>成片与配套</h3><p>交付 40 秒 9:16 竖版成片 1 条：英文对白 + 英文字幕，含视频封面与片尾 TikTok Shop 购买引导卡。人物、场景与剧情画面按固定提示词规范生成，流程与本节其他作品一致。</p></div>
+      <div class="note"><b>口径说明：</b>片中的 50% OFF 与包邮是画面内的促销信息设计，<b style="color:var(--text)">不是投放效果数据</b>，本页不将其计入任何业绩。</div>
+    </div>
+  </div>
+
+  <h3 class="blk">三合一充电器 UGC 广告</h3>
+  <div class="case-grid">
+    <div class="sticky">
+      <div class="vid portrait" style="margin-top:0">
+    <video controls playsinline preload="metadata" poster="assets/video/charger-poster.jpg" src="assets/video/charger.mp4" aria-label="三合一充电器 UGC 广告成片 · 25 秒 · 9:16 竖版"></video>
+    <a class="vid-open" href="assets/video/charger.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a>
+  </div>
+      <p style="font-size:13px;color:var(--faint);margin-top:10px">25 秒 · 9:16 竖版 · AI 生成 UGC 产品广告 · 主题 <span class="en">Foldable 3-in-1 Travel Charger</span>。从创意策略、双语脚本到电商延展交付的完整案例。</p>
+    </div>
+    <div>
+<div class="strat">
+        <p class="big">创意策略：先制造低电量焦虑，再给出轻松解决方案。</p>
+        <p>不先讲参数：先让观众对着「三台设备同时没电、桌面一团线」共情 3 秒，再用一个展开动作一次性解除焦虑。</p>
+      </div>
+
+      <h3 class="blk">UGC 结构 · 五段式</h3>
+      <div class="funnel">
+        <div class="fstep">痛点共鸣<small>低电量焦虑</small></div><span class="farr">→</span>
+        <div class="fstep">产品动作<small>展开即用</small></div><span class="farr">→</span>
+        <div class="fstep">使用过程<small>三设备同充</small></div><span class="farr">→</span>
+        <div class="fstep">场景利益<small>旅行 / 桌面整理</small></div><span class="farr">→</span>
+        <div class="fstep">价格行动<small>优惠 CTA</small></div>
+      </div>
+
+      <h3 class="blk">25 秒故事线 · 点任意一段查看</h3>
+      <div class="tl" id="timeline">
+        <div class="tl-item on"><span class="t">0–3s</span><b>痛点 Hook</b><p>多设备低电量 + 杂乱线缆，先抓注意力。</p></div>
+        <div class="tl-item"><span class="t">3–6s</span><b>达人出镜</b><p>达人出镜建信任，口播引入产品。</p><div class="say">“One charger. Three devices. Total clarity.”</div></div>
+        <div class="tl-item"><span class="t">6–9s</span><b>展开演示</b><p>折叠结构展开特写——全片的记忆点镜头。</p></div>
+        <div class="tl-item"><span class="t">9–14s</span><b>三设备充电证明</b><p>手机、手表、耳机同框充电，证明「3-in-1」不是口号。</p></div>
+        <div class="tl-item"><span class="t">14–17s</span><b>前后对比</b><p>杂乱桌面 vs. 整洁桌面，利益可视化。</p></div>
+        <div class="tl-item"><span class="t">17–21s</span><b>折叠便携</b><p>折回小体积、放进包里，落点到 Travel 场景。</p></div>
+        <div class="tl-item"><span class="t">21–25s</span><b>优惠 CTA</b><p>价格利益点 + 行动号召收尾。</p></div>
+      </div>
+
+  <div class="quote">脚本、提示词、AI 生成、剪辑与多版本交付一人完成——交付的不是单条视频，而是从脚本、场景图、素材生成到剪辑转化的一整套内容解决方案。</div>
+    </div>
+  </div>
+
+  <h3 class="blk">延展交付 · 不止一条视频</h3>
+  <div class="dgrid">
+    <div class="dcard"><div class="en">Main Images · 电商主图 6 张</div><p><span class="en">Charge All 3 at Once</span>、<span class="en">Fold in Seconds</span>、<span class="en">From Messy to Tidy</span> 三张卖点图领衔，实图见下方。</p></div>
+    <div class="dcard"><div class="en">Cover &amp; Subtitles</div><p>视频封面 + 中英双语字幕包，按投放平台规格交付；完整双语脚本原文见飞书深挖版（页脚入口）。</p></div>
+    <div class="dcard"><div class="en">CTA &amp; Multi-platform Specs</div><p>优惠行动号召文案与画面包，可替换促销档期；同一套素材适配 TikTok Shop、独立站、Amazon / AliExpress 详情页与 Reels / Shorts。</p></div>
+  </div>
+  <div class="note"><b>口径说明：</b>$15.99 / $19.99 与 20% OFF 是该产品的售价与促销信息，属于画面内的价格行动设计，<b style="color:var(--text)">不是投放效果数据</b>，本页不将其计入任何业绩。</div>
+
+  <h3 class="blk">电商主图 · 6 张实图</h3>
+  <div class="gal gal-grid">
+    <figure><img loading="lazy" src="assets/img/charger-main-1.jpg" alt="三合一充电器电商主图 1"><figcaption>主图 1 / 6</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/charger-main-2.jpg" alt="三合一充电器电商主图 2"><figcaption>主图 2 / 6</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/charger-main-3.jpg" alt="三合一充电器电商主图 3"><figcaption>主图 3 / 6</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/charger-main-4.jpg" alt="三合一充电器电商主图 4"><figcaption>主图 4 / 6</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/charger-main-5.jpg" alt="三合一充电器电商主图 5"><figcaption>主图 5 / 6</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/charger-main-6.jpg" alt="三合一充电器电商主图 6"><figcaption>主图 6 / 6</figcaption></figure>
+  </div>
+
+  <h3 class="blk">案例讲解长图</h3>
+  <a class="longview" href="assets/img/charger-case-long.jpg" target="_blank" rel="noopener">
+    <div class="crop"><img loading="lazy" src="assets/img/charger-case-long.jpg" alt="三合一充电器案例讲解长图（完整显示）"></div>
+    <span><b>点击查看原图 →</b> 案例讲解长图共 8100px 高，已在上方完整显示，点开看原图。</span>
+  </a>
+</section>
+
+<!-- ============ 05 DOU SHOP FULL CHAIN ============ -->
+<section id="case4">
+  <div class="sec-head">
+    <div class="case-no">05 — E-commerce</div>
+    <h2>抖店电商运营全链路 · 自营店长</h2>
+    <p>自己开店、自己投流、自己算账。这段经历让我做创意时天然会想一件事：这条素材最后要替哪一步转化负责。</p>
+  </div>
+  <div class="stats" style="margin-top:6px">
+    <div class="stat">
+      <div class="num">2.5<small> 万</small></div>
+      <h3>商品访客人数</h3>
+      <p>从 0 起店，一个月把商品访客跑到 2.5 万。</p>
+    </div>
+    <div class="stat">
+      <div class="num">464<small> 单</small></div>
+      <h3>成交订单数</h3>
+      <p>单月成交 464 单，店铺真实出单、持续跑量。</p>
+    </div>
+    <div class="stat">
+      <div class="num">22.19<small>%</small></div>
+      <h3>商品点击–支付转化率</h3>
+      <p>点进商品的人里超过两成下单，转化不低。</p>
+    </div>
+  </div>
+  <p style="font-size:12.5px;color:var(--faint);margin:2px 0 20px">数据来源：抖店罗盘经营简报 · 2026 年 9 月月报 · 店铺「青稞沐屿」</p>
+  <div class="flow">
+    <div class="fnode"><b>选品</b><span>蝉妈妈跨类目选品 + 达人数据参考</span></div>
+    <div class="fnode"><b>上架与优化</b><span>商品上架、标题与详情优化</span></div>
+    <div class="fnode"><b>千川投流</b><span>巨量千川投放与效果观察</span></div>
+    <div class="fnode"><b>表格化管理</b><span>飞书多维表格做选品与上架管理</span></div>
+    <div class="fnode"><b>Codex 工作台</b><span>自搭选品与管理工作台提效</span></div>
+    <div class="fnode"><b>算账</b><span>供应商筛选 + 成本利润测算</span></div>
+  </div>
+  <div class="cards" style="margin-top:14px">
+    <div class="card"><h3>为什么这段对编导岗有用</h3><ul><li>投过千川，才知道素材的 CTR / 转化在账户里长什么样</li><li>算过成本利润，创意brief里的价格带和毛利是真的懂</li><li>用表格和工作台管货盘，内容节奏能跟上架节奏对齐</li></ul></div>
+    <figure class="shot-fig"><img loading="lazy" src="assets/img/luopan-data-final2.jpg" alt="抖店罗盘经营简报 2026 年 9 月月报数据截图：商品访客人数 2.5 万、商品点击-支付转化 22.19%、商品点击人数 1,798、成交人数 399 等经营数据"><figcaption>抖店罗盘经营简报 · 2026年9月</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ 06 AI SHORTS & WORKFLOW ============ -->
+<section id="case3">
+  <div class="sec-head">
+    <div class="case-no">06 — AI Workflow</div>
+    <h2>AI 创意短片与工作流</h2>
+    <p>2022 年起持续使用 AI 工具。生成环节按固定提示词规范与工作流执行，下面每条作品对应一套可复现的流程。</p>
+  </div>
+
+  <div class="cards c3 film-trio">
+    <div class="card film-card"><div class="dur">AIGC SHORT FILM · IN PROGRESS</div><h3>《光织丝路》</h3><p>以宝相花纹样为核心意象的丝路题材短片。</p><p style="margin-top:8px">中国好创意 AIGC 专项赛「筑梦丝路·数启华章」参赛作品<span class="badge gray">创作中</span></p><div class="film-foot"><div class="film-media"><img loading="lazy" src="assets/img/silkroad-guangzhi-title.jpg" alt="《光织丝路》标题卡：星空下宝相花纹样与丝路古城"></div></div></div>
+    <div class="card film-card"><div class="dur">AIGC SHORT FILM · IN PROGRESS</div><h3>《迟到一千年的信》</h3><p>一封家书跨越千年的接力故事。</p><p style="margin-top:8px">中国好创意 AIGC 专项赛「筑梦丝路·数启华章」参赛作品<span class="badge gray">创作中</span></p><div class="film-foot"><div class="film-media"><img loading="lazy" src="assets/img/silkroad-letter-title.jpg" alt="《迟到一千年的信》标题卡：老城院落、果树与远山城墙"></div></div></div>
+    <div class="card film-card"><div class="film-txt"><div class="dur">5 MIN · AI SHORT FILM</div><h3>《丁香钟》</h3><p>5 分钟 AI 剧情短片 · 原创故事。<span class="badge gray">创作中</span></p></div><div class="film-foot"><div class="dlrow"><a class="btn" href="assets/docs/dingxiangzhong-final.docx" download>↓ 《丁香钟》终稿（DOCX）</a></div></div></div>
+  </div>
+  <div class="cards c3" style="margin-top:12px">
+    <div class="card"><div class="dur">48s · AI SHORT FILM</div><h3>娃哈哈 45s 小短片</h3><p>实际成片 48 秒。含本人自写提示词生成的分镜图与人物形象，先定分镜再生成，画面可控而非随机。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/wahaha-poster.jpg" src="assets/video/wahaha.mp4" aria-label="娃哈哈小短片成片 · 48 秒 · 16:9"></video><a class="vid-open" href="assets/video/wahaha.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+    <div class="card"><div class="dur">45s · AI CREATIVE</div><h3>蜜雪冰城「剑琴书」创意视频</h3><p>用提示词先定人物装造，再做场景建模保全片统一，配九宫格剧照——解决 AI 视频最常见的「人物每镜变脸、场景漂移」。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/mixue-poster.jpg" src="assets/video/mixue.mp4" aria-label="蜜雪冰城『剑琴书』创意视频成片 · 45 秒 · 16:9"></video><a class="vid-open" href="assets/video/mixue.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+    <div class="card"><div class="dur">15s · AI + LIVE ACTION</div><h3>AI＋实拍「炸货」创意小广告</h3><p>本人形象与实拍图结合生成分镜：真人实拍保真实感，AI 补齐实拍拍不出的画面。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/zhahuo-poster.jpg" src="assets/video/zhahuo.mp4" aria-label="AI＋实拍「炸货」创意小广告成片 · 15 秒 · 16:9"></video><a class="vid-open" href="assets/video/zhahuo.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+    <div class="card"><div class="dur">15s · MOBILE CREATIVE</div><h3>手机创意小视频</h3><p>15 秒手机产品创意短片，验证短时长内的卖点密度与节奏。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/phone-creative-poster.jpg" src="assets/video/phone-creative.mp4" aria-label="手机创意小视频成片 · 15 秒 · 16:9"></video><a class="vid-open" href="assets/video/phone-creative.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+        <div class="card"><div class="dur">29s · E-COMMERCE VIDEO</div><h3>精华液电商视频</h3><p>修护精华液电商短片，29 秒，9:16 竖版。</p><div class="vid portrait"><video controls playsinline preload="metadata" poster="assets/video/jinghuaye-poster.jpg" src="assets/video/jinghuaye.mp4" aria-label="精华液电商视频 · 29 秒 · 9:16 竖版"></video><a class="vid-open" href="assets/video/jinghuaye.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+    <div class="card"><div class="dur">AI COMIC</div><h3>AI 漫画创作</h3><p>AI 漫画作品：角色与画风一致性控制的另一种练法，与视频分镜共用同一套提示词规范。</p><div style="margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"><img loading="lazy" src="assets/img/aigc-manga-1.jpg" alt="AI 漫画第 1 页" style="width:100%;display:block"></div></div>
+  </div>
+
+  <h3 class="blk">娃哈哈 · 人物与分镜图</h3>
+  <div class="gal g4 gal-grid">
+    <figure><img loading="lazy" src="assets/img/aigc-wahaha-character.jpg" alt="娃哈哈短片人物三视图"><figcaption>人物三视图</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-wahaha-collage-1.jpg" alt="娃哈哈短片分镜拼图 1"><figcaption>分镜拼图 1</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-wahaha-collage-2.jpg" alt="娃哈哈短片分镜拼图 2"><figcaption>分镜拼图 2</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-wahaha-collage-3.jpg" alt="娃哈哈短片分镜拼图 3"><figcaption>分镜拼图 3</figcaption></figure>
+  </div>
+
+  <h3 class="blk">娃哈哈 · 创作过程</h3>
+  <figure class="shot-fig">
+    <img loading="lazy" src="assets/img/aigc-wahaha-process-original.png" alt="娃哈哈短片创作过程原图（左右双屏）：左屏为剧本与分镜文档，右屏为节点画布工作流">
+    <figcaption>创作过程原图 · 左：剧本 / 分镜文档 · 右：节点画布工作流</figcaption>
+  </figure>
+
+  <h3 class="blk">蜜雪冰城「剑琴书」· 分镜 / 场景 / 定妆</h3>
+  <div class="gal gal-grid">
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-grid-1.jpg" alt="蜜雪冰城分镜九宫格 1"><figcaption>分镜九宫格 1</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-grid-2.jpg" alt="蜜雪冰城分镜九宫格 2"><figcaption>分镜九宫格 2</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-grid-3.jpg" alt="蜜雪冰城分镜九宫格 3"><figcaption>分镜九宫格 3</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-grid-4.jpg" alt="蜜雪冰城分镜九宫格 4"><figcaption>分镜九宫格 4</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-grid-5.jpg" alt="蜜雪冰城分镜九宫格 5"><figcaption>分镜九宫格 5</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-scene-1.jpg" alt="蜜雪冰城场景建模 1"><figcaption>场景建模 1</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-scene-2.jpg" alt="蜜雪冰城场景建模 2"><figcaption>场景建模 2</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-character-schoolgirl.jpg" alt="蜜雪冰城校服女孩定妆"><figcaption>定妆 · 校服女孩</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-mixue-character-hanfu.jpg" alt="蜜雪冰城红汉服定妆"><figcaption>定妆 · 红汉服</figcaption></figure>
+  </div>
+
+  <h3 class="blk">AI＋实拍「炸货」· 分镜与实拍</h3>
+  <div class="gal gal-grid">
+    <figure><img loading="lazy" src="assets/img/aigc-zhahuo-storyboard.jpg" alt="炸货创意小广告分镜图"><figcaption>分镜图</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-zhahuo-photo-1.jpg" alt="炸货实拍图 1"><figcaption>实拍 1</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-zhahuo-photo-2.jpg" alt="炸货实拍图 2"><figcaption>实拍 2</figcaption></figure>
+  </div>
+
+  <h3 class="blk">手机创意小视频 · 分镜大拼图</h3>
+  <figure class="shot-fig">
+    <img loading="lazy" src="assets/img/aigc-phone-storyboard.jpg" alt="手机创意小视频分镜大拼图">
+    <figcaption>分镜大拼图</figcaption>
+  </figure>
+
+  <h3 class="blk">AI 漫画 · 全 4 页</h3>
+  <div class="gal g4 gal-grid">
+    <figure><img loading="lazy" src="assets/img/aigc-manga-1.jpg" alt="AI 漫画第 1 页"><figcaption>漫画 · 第 1 页</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-manga-2.jpg" alt="AI 漫画第 2 页"><figcaption>漫画 · 第 2 页</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-manga-3.jpg" alt="AI 漫画第 3 页"><figcaption>漫画 · 第 3 页</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/aigc-manga-4.jpg" alt="AI 漫画第 4 页"><figcaption>漫画 · 第 4 页</figcaption></figure>
+  </div>
+  <h3 class="blk">工作流方法论</h3>
+  <div class="method">
+    <div class="principle"><div class="en">COMFYUI / RUNNINGHUB</div><h3>自建工作流做质检</h3><p>用 ComfyUI / RunningHub 自建工作流做高清增强与局部重绘——生成不是终点，修复和提质才是交付标准。</p></div>
+    <div class="principle"><div class="en">libTV CANVAS</div><h3>无限画布整合多模型</h3><p>在 libTV 无限画布里整合多个视频生成模型，按镜头需求选模型，而不是一个模型用到底。</p></div>
+    <div class="principle"><div class="en">CHATGPT / GEMINI + CODEX</div><h3>大模型做前后端</h3><p>ChatGPT 与 Gemini 辅助脚本与提示词打磨；Codex 等 agent 进入日常流程，搭工具、处理重复劳动。</p></div>
+  </div>
+  <div class="quote">提示词按固定规范编写，同一需求的重复生成次数可控；生成结果经高清增强与局部重绘后交付，出片成本与周期可预估。<small>—— 本人作品心得提炼</small></div>
+</section>
+
+<!-- ============ 07 BRAND AI OPS ============ -->
+<section id="case-brand">
+  <div class="sec-head">
+    <div class="case-no">07 — Flagship · Self-run Brand</div>
+    <h2>自营电商品牌 · AI 内容运营实战<span class="badge">旗舰案例</span></h2>
+    <p>自营独版水晶抖店，首波 15 款，一人运营，产品每条唯一、售出即下架。运营全程使用 AI 工作流：获客阶段用 AI 整理用户高频问题，提前生产内容并备好私信话术；方案阶段用 AI 生成排期与文案初稿，本人审核定版；素材阶段实拍产品本体，AI 生成背景图；复盘阶段用 AI 汇总投放数据与评论，据此调整后续内容；投流环节采用 AI 投流：AI 核算单条利润、制定投放方案（预算与加量、停投规则），本人审核后执行，按数据迭代优化。</p>
+  </div>
+
+  <h3 class="blk">内容运营全链路（获客—方案—素材—复盘—AI 投流）· 五个环节</h3>
+  <div class="stageflow" aria-label="内容运营全链路五个环节">
+    <span class="stage">获客对接</span><span class="farr">→</span>
+    <span class="stage">方案制定</span><span class="farr">→</span>
+    <span class="stage">素材生产</span><span class="farr">→</span>
+    <span class="stage">反馈复盘改进</span><span class="farr">→</span>
+    <span class="stage">AI 投流</span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">15<small> 款</small></div><h3>首波货盘</h3><p>4 档价带，19–229 元</p></div>
+    <div class="kpi"><div class="n">158<small> 篇</small></div><h3>GEO 内容成稿</h3><p>已成稿，待按节奏发布</p></div>
+    <div class="kpi"><div class="n">2<small> 个</small></div><h3>每日自动发布任务</h3><p>情境层与直接层分时发布</p></div>
+    <div class="kpi"><div class="n">4×10</div><h3>每周巡检</h3><p>4 个平台 × 10 个问题</p></div>
+    <div class="kpi"><div class="n">2×3</div><h3>内容矩阵</h3><p>双平台 × 三个内容方向</p></div>
+  </div>
+
+  <div class="cards" style="margin-top:14px">
+    <div class="card"><h3>编号与承接方式</h3><p>每个产品有唯一编号，内容按编号发布；用户私信报编号咨询，凭编号确认对应产品与实拍图，售出后该编号下架、不再承接。</p></div>
+    <div class="card"><h3>内容生产方式</h3><p>产品本体使用实拍图，AI 只生成背景与氛围图；文案由 AI 出初稿、本人审核定版后发布，材质信息以进货单核对结果为准。</p></div>
+    <div class="card"><h3>数据使用方式</h3><p>发布后汇总投放数据与评论，用于调整后续内容的选题与排期；投流先核算单条利润，再定预算，按数据决定加量、停投或重剪。</p></div>
+    <div class="card"><h3>开发中</h3><p>获客型小程序与 AI 选品模块<span class="badge gray">开发中</span></p><p style="margin-top:8px">小程序用于测试、抽奖与图鉴展示；AI 选品按肤色、色系与预算生成配串方案，材质描述由人工核对。</p></div>
+  </div>
+
+  <div class="pdflink"><b>完整案例（PDF）</b> · 占位，待补充后在此处放链接。当前先看本页与下方各案例。</div>
+</section>
+
+<!-- ============ FOUNDATION CRAFT ============ -->
+<section id="craft" style="border-bottom:0">
+  <div class="sec-head">
+    <div class="case-no">Foundation</div>
+    <h2>基本功 · 实拍与设计</h2>
+    <p>放在最后，但不是凑数：AI 和数据是我的增量，能拿起机器、从零做完一条片子，是我的地基。拍摄全链路：前期分镜与布光 → 现场拍摄 → 调色 → 成片交付，本人自带全画幅相机与稳定器。</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="dur">3 MIN · 紫金奖公益短片</div><h3>《上善若水》</h3><p>一人走完拍摄全链路：<strong>策划、剧本、分镜、拍摄、指导、剪辑、调色、配音</strong>——一条片子验证完整的单兵制作能力。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/shangshan-ruoshui-poster.jpg" src="assets/video/shangshan-ruoshui.mp4" aria-label="《上善若水》成片 · 3 分钟 · 16:9"></video><a class="vid-open" href="assets/video/shangshan-ruoshui.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+    <div class="card"><div class="dur">COMMERCIAL</div><h3>商业婚礼摄像与剪辑</h3><p>真实商业交付经验：现场不可重来，逼出来的机位判断、节奏感和交付意识，棚拍给不了。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/wedding-poster.jpg" src="assets/video/wedding.mp4" aria-label="商业婚礼先导片 · 36 秒 · 16:9"></video><a class="vid-open" href="assets/video/wedding.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+  </div>
+  <div class="cards" style="margin-top:12px">
+    <div class="card"><div class="dur">PHOTO / COLOR</div><h3>摄影与调色</h3><p>自有设备：全画幅相机 + 稳定器。调色教程在自有账号分享，数据见首屏（单条最高 9 万、总 25 万+）。</p><div class="craft-img" style="margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"><img loading="lazy" src="assets/img/photo-chongqing-street.jpg" alt="摄影作品：重庆街景" style="width:100%;display:block"></div></div>
+    <div class="card"><div class="dur">GRAPHIC · 100% MANUAL</div><h3>平面设计 · 纯手工不借助 AI</h3><p>海报、物料展板、VI 视觉识别，含班级标识与校园品牌设计。这部分特意标注：<strong>纯手工完成</strong>，是审美基本功，不是生成图。</p><div class="craft-img" style="margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"><img loading="lazy" src="assets/img/design-poster-canal.jpg" alt="海报设计：运河主题" style="width:100%;display:block"></div></div>
+  </div>
+  <div class="cards" style="margin-top:12px">
+    <div class="card"><div class="dur">TOOLKIT</div><h3>工具栈速览</h3><ul><li>剪辑与调色：Premiere、达芬奇</li><li>图像与修图：Photoshop、Lightroom、像素蛋糕</li><li>AI 生成：ComfyUI、RunningHub、libTV</li><li>数据与协作：蝉妈妈、飞书多维表格</li><li>提效：Codex 等 Agent 工作流</li></ul></div>
+    <div class="card"><div class="dur">AT A GLANCE</div><h3>一页速览</h3><ul><li>海外一级代理商编导实习（2026.07–09），素材单月消耗约 6 万美元</li><li>自营抖店，全链路运营</li><li>自有账号总浏览 25 万+</li><li>2027 届广告学，年级前 30%</li></ul></div>
+  </div>
+  <h3 class="blk">摄影作品画廊 · 18 张</h3>
+  <div class="gal tall">
+    <figure><img loading="lazy" src="assets/img/photo-alley-dusk.jpg" alt="摄影作品：黄昏巷子"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-alley-light.jpg" alt="摄影作品：巷子光影"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-ancient-tower-night.jpg" alt="摄影作品：古塔夜景"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-bridge-night.jpg" alt="摄影作品：桥夜景"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-bus-sunset.jpg" alt="摄影作品：公交与落日"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-chongqing-street.jpg" alt="摄影作品：重庆街景"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-city-crowd.jpg" alt="摄影作品：城市人群"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-clock-tower.jpg" alt="摄影作品：钟楼"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-desert.jpg" alt="摄影作品：沙漠"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-flower-market.jpg" alt="摄影作品：花市"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-hanfu-stream.jpg" alt="摄影作品：汉服溪边"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-hanfu-tower.jpg" alt="摄影作品：汉服与塔"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-night-singer.jpg" alt="摄影作品：夜晚歌手"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-orange-building.jpg" alt="摄影作品：橙色建筑"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-river-night.jpg" alt="摄影作品：江边夜景"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-tower-skyline.jpg" alt="摄影作品：塔与天际线"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-traffic.jpg" alt="摄影作品：车流"></figure>
+    <figure><img loading="lazy" src="assets/img/photo-white-pagoda.jpg" alt="摄影作品：白塔"></figure>
+  </div>
+
+  <h3 class="blk">《上善若水》· 制作过程</h3>
+  <div class="gal gal-grid">
+    <figure><img loading="lazy" src="assets/img/shangshan-manuscript.jpg" alt="上善若水手写分镜"><figcaption>手写分镜</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/shangshan-editing.jpg" alt="上善若水剪辑截图"><figcaption>剪辑</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/shangshan-grading.jpg" alt="上善若水调色截图"><figcaption>调色</figcaption></figure>
+  </div>
+  <div class="dlrow">
+    <a class="btn" href="assets/docs/shangshan-storyboard.pdf" download>↓ 分镜头脚本（PDF）</a>
+    <a class="btn" href="assets/docs/shangshan-script.docx" download>↓ 剧本（DOCX）</a>
+  </div>
+
+  <h3 class="blk">商业婚礼 · 现场与剪辑</h3>
+  <div class="gal g2">
+    <figure><img loading="lazy" src="assets/img/wedding-onsite.jpg" alt="婚礼拍摄现场"><figcaption>拍摄现场</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/wedding-editing.jpg" alt="婚礼剪辑截图"><figcaption>剪辑</figcaption></figure>
+  </div>
+
+  <h3 class="blk">自有账号 · 主页与作品截图</h3>
+  <div class="gal g4 gal-grid">
+    <figure><img loading="lazy" class="fit" src="assets/img/media-account-home.jpg" alt="自有账号主页截图"><figcaption>账号主页</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-1.jpg" alt="自有账号作品截图 1"><figcaption>作品截图 1</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-2.jpg" alt="自有账号作品截图 2"><figcaption>作品截图 2</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-3.jpg" alt="自有账号作品截图 3"><figcaption>作品截图 3</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-4.jpg" alt="自有账号作品截图 4"><figcaption>作品截图 4</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-5.jpg" alt="自有账号作品截图 5"><figcaption>作品截图 5</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-6.jpg" alt="自有账号作品截图 6"><figcaption>作品截图 6</figcaption></figure>
+    <figure><img loading="lazy" class="fit" src="assets/img/media-post-7.jpg" alt="自有账号作品截图 7"><figcaption>作品截图 7</figcaption></figure>
+  </div>
+
+  <h3 class="blk">平面设计 · 海报</h3>
+  <div class="gal tall">
+    <figure><img loading="lazy" src="assets/img/design-poster-canal.jpg" alt="海报设计：运河主题"><figcaption>海报 · 运河</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-poster-admission.jpg" alt="海报设计：招生主题"><figcaption>海报 · 招生</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-poster-canva.jpg" alt="海报设计：Canva 练习"><figcaption>海报 · Canva</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-poster-without-flowers.jpg" alt="海报设计：无花主题"><figcaption>海报 · 无花</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-poster-hongkong.jpg" alt="海报设计：香港主题"><figcaption>海报 · 香港</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-poster-china-story.jpg" alt="海报设计：中国故事主题"><figcaption>海报 · 中国故事</figcaption></figure>
+  </div>
+
+  <h3 class="blk">平面设计 · 物料与展板</h3>
+  <div class="gal g2">
+    <figure><img loading="lazy" src="assets/img/design-ps-workplace.jpg" alt="PS 物料设计"><figcaption>PS 物料</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-display-stand.jpg" alt="展示架设计"><figcaption>展示架</figcaption></figure>
+  </div>
+
+  <h3 class="blk">班级 VI · 视觉识别</h3>
+  <div class="gal g4 fill7">
+    <figure><img loading="lazy" src="assets/img/design-vi-emblem.jpg" alt="班级 VI 徽标"><figcaption>徽标</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-vi-tshirt.jpg" alt="班级 VI T 恤"><figcaption>T 恤</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-vi-notebook.jpg" alt="班级 VI 笔记本"><figcaption>笔记本</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-vi-tote.jpg" alt="班级 VI 帆布袋"><figcaption>帆布袋</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-vi-card-dark.jpg" alt="班级 VI 名片深色版"><figcaption>名片 · 深色</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-vi-card-light.jpg" alt="班级 VI 名片浅色版"><figcaption>名片 · 浅色</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-vi-mug.jpg" alt="班级 VI 马克杯"><figcaption>马克杯</figcaption></figure>
+  </div>
+
+  <h3 class="blk">贪吃舌 VI · 视觉识别</h3>
+  <div class="gal g4">
+    <figure><img loading="lazy" src="assets/img/design-tantongue-logo.jpg" alt="贪吃舌 Logo"><figcaption>Logo</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-wordmark.jpg" alt="贪吃舌字标"><figcaption>字标</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-colors.jpg" alt="贪吃舌标准色"><figcaption>标准色</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-bag.jpg" alt="贪吃舌包装袋"><figcaption>包装袋</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-cup.jpg" alt="贪吃舌杯子"><figcaption>杯子</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-chips.jpg" alt="贪吃舌薯片包装"><figcaption>薯片包装</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-nuts.jpg" alt="贪吃舌坚果包装"><figcaption>坚果包装</figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/design-tantongue-sign.jpg" alt="贪吃舌招牌"><figcaption>招牌</figcaption></figure>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="quote" style="margin-bottom:0">创意能跑量，数据能说话，店自己开过——这是我和纯执行型编导的区别。</div>
+    <div class="foot-links">
+      <div class="flink"><b>飞书深挖版（过程材料）</b>双语脚本原文、prompt 库、复盘表在飞书深挖版里，面试深挖时打开。链接：<span style="border-bottom:1px dashed var(--line2)">待本人填入飞书文档链接</span></div>
+      <div class="flink"><b>联系我</b>邮箱：linxx8393@gmail.com（点击首屏按钮可复制）<br>电话 / 微信：13218968393（同号） · 期望城市：南京 / 杭州 / 深圳</div>
+    </div>
+    <p class="wip">图片已全部嵌入本页；视频已全部嵌入 11 条 · 林新翔 · 2027 届</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">邮箱已复制 ✓</div>
+
+<script>
+(function(){
+  // copy email
+  var btn=document.getElementById('copyMail'),toast=document.getElementById('toast');
+  btn.addEventListener('click',function(){
+    var email='linxx8393@gmail.com';
+    function done(){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},1800)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(email).then(done).catch(function(){fallback()})}else{fallback()}
+    function fallback(){var ta=document.createElement('textarea');ta.value=email;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(ta)}
+  });
+  // timeline select
+  var items=document.querySelectorAll('#timeline .tl-item');
+  items.forEach(function(it){it.addEventListener('click',function(){items.forEach(function(x){x.classList.remove('on')});it.classList.add('on')})});
+  // nav active on scroll
+  var links=document.querySelectorAll('#topnav a');
+  var secs=['ai-ability','case-geo','case2','case-ugc','case4','case3','case-brand','craft'].map(function(id){return document.getElementById(id)});
+  function onScroll(){var y=window.scrollY+120,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('active',i===cur)})}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
