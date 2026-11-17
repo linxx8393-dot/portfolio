@@ -335,7 +335,7 @@ footer .quote{margin-top:0}
   <div class="topbar-in">
     <div class="brand">林新翔 <span>· PORTFOLIO</span></div>
     <nav class="topnav" id="topnav">
-      <a href="#ai-ability">AI 能力</a><a href="#case-geo">小裂变 GEO</a><a href="#case-film">《到了，说一声》</a><a href="#case2">海外一级代理商实习</a><a href="#case-ugc">海外UGC视频</a><a href="#case4">运营全链路</a><a href="#case-mktvideo">营销视频</a><a href="#case3">AI 短片</a><a href="#case-brand">品牌 AI 运营</a><a href="#craft">基本功</a>
+      <a href="#ai-ability">AI 能力</a><a href="#case-geo">主打案例</a><a href="#case2">海外一级代理商实习</a><a href="#case-ugc">海外UGC视频</a><a href="#case4">运营全链路</a><a href="#case-mktvideo">营销视频</a><a href="#case3">AI 短片</a><a href="#case-brand">品牌 AI 运营</a><a href="#craft">基本功</a>
     </nav>
   </div>
 </header>
@@ -1071,10 +1071,11 @@ footer .quote{margin-top:0}
   // timeline select
   var items=document.querySelectorAll('#timeline .tl-item');
   items.forEach(function(it){it.addEventListener('click',function(){items.forEach(function(x){x.classList.remove('on')});it.classList.add('on')})});
-  // nav active on scroll
+  // nav active on scroll — #case-geo 与 #case-film 同属「主打案例」一个入口
   var links=document.querySelectorAll('#topnav a');
   var secs=['ai-ability','case-geo','case-film','case2','case-ugc','case4','case-mktvideo','case3','case-brand','craft'].map(function(id){return document.getElementById(id)});
-  function onScroll(){var y=window.scrollY+120,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('active',i===cur)})}
+  function linkFor(id){var target=(id==='case-film')?'case-geo':id;for(var j=0;j<links.length;j++){if(links[j].getAttribute('href')==='#'+target)return links[j]}return null}
+  function onScroll(){var y=window.scrollY+120,cur='ai-ability';secs.forEach(function(s){if(s&&s.offsetTop<=y)cur=s.id});links.forEach(function(a){a.classList.remove('active')});var a=linkFor(cur);if(a)a.classList.add('active')}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
