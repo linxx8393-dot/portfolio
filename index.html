@@ -224,12 +224,9 @@ p.body strong,li strong{color:var(--text)}
    area under its content (e.g. the AI comic card under its image) */
 #case3 .cards{align-items:start}
 
-/* 06 film trio — all three shorts (《光织丝路》《迟到一千年的信》《丁香钟》)
-   sit side by side in one three-column group via the generic .cards.c3
-   rules. Each card keeps its own content height (align-items:start) and
-   nothing is anchored to the card bottom, so the text-only 《丁香钟》 card
-   ends naturally right after its download button */
-#case3 .cards.film-trio{align-items:start}
+/* film cards in #case3 keep their own content height (align-items:start)
+   and nothing is anchored to the card bottom, so the text-only 《丁香钟》
+   card ends naturally right after its download button */
 .film-card .film-foot{margin-top:14px}
 .film-card .film-foot .dlrow{margin-top:0}
 .film-media{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
@@ -338,7 +335,7 @@ footer .quote{margin-top:0}
   <div class="topbar-in">
     <div class="brand">林新翔 <span>· PORTFOLIO</span></div>
     <nav class="topnav" id="topnav">
-      <a href="#ai-ability">AI 能力</a><a href="#case-geo">小裂变 GEO</a><a href="#case2">海外一级代理商实习</a><a href="#case-ugc">海外UGC视频</a><a href="#case4">运营全链路</a><a href="#case3">AI 短片</a><a href="#case-brand">品牌 AI 运营</a><a href="#craft">基本功</a>
+      <a href="#ai-ability">AI 能力</a><a href="#case-geo">小裂变 GEO</a><a href="#case-film">《到了，说一声》</a><a href="#case2">海外一级代理商实习</a><a href="#case-ugc">海外UGC视频</a><a href="#case4">运营全链路</a><a href="#case-mktvideo">营销视频</a><a href="#case3">AI 短片</a><a href="#case-brand">品牌 AI 运营</a><a href="#craft">基本功</a>
     </nav>
   </div>
 </header>
@@ -353,7 +350,7 @@ footer .quote{margin-top:0}
       <span class="tag">期望城市：南京 / 杭州 / 深圳</span>
     </div>
     <h1>林新翔<span class="thin">懂数据，懂 AI 的<em>海外创意人</em></span></h1>
-    <p class="hero-sub">求职意向：<strong>海外效果广告创意编导 / TikTok 电商内容</strong>。做过海外一级代理商的编导，自己跑过一家抖店的运营全链路——创意、数据、AI 和生意，我都下场做过。</p>
+    <p class="hero-sub">求职意向：<strong>海外效果广告创意编导 / 海外电商内容运营 / AI 短片编导</strong>。海外一级代理商编导实习，参与素材单月消耗约 6 万美元；运营一家抖店全链路；AI 短片全流程制作：拆解爆款与大盘素材定方向、剧本与分镜、逐镜生成、声音资产与后期剪辑。</p>
 
     <div class="stats">
       <div class="stat">
@@ -579,6 +576,43 @@ footer .quote{margin-top:0}
   </div>
 </section>
 
+<!-- ============ FLAGSHIP · AI SHORT FILM ============ -->
+<section id="case-film">
+  <div class="sec-head">
+    <div class="case-no">Flagship · AI Short Film</div>
+    <h2>《到了，说一声》<span class="badge">主打案例</span></h2>
+    <p>中国好创意暨全国数字艺术设计大赛 AIGC 专项赛「筑梦丝路·数启华章」参赛作品。双时空情感短片，约 3 分 44 秒，全片制作周期 12 小时。</p>
+  </div>
+
+  <div class="case-grid">
+    <div class="sticky">
+      <div class="vid-hero">
+        <video controls playsinline preload="metadata" poster="assets/video/daole-poster.jpg" src="assets/video/daole-shuoyisheng.mp4" style="aspect-ratio:16/9;max-height:440px" aria-label="《到了，说一声》成片 · 3 分 44 秒 · 16:9"></video>
+        <a class="vid-open" href="assets/video/daole-shuoyisheng.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a>
+      </div>
+    </div>
+    <div>
+      <div class="strat">
+        <p class="big">先用 Muse 拆解爆款与大盘定方向，再逐镜生产、逐秒扫帧质检。</p>
+        <p>双时空情感短片，约 3 分 44 秒，全片制作周期 12 小时。先用 Muse 做前期拆解：监测大盘素材方向和同类题材的流量走势，再对筛选出的爆款逐条拆解，拆脚本结构、钩子设置、节奏和情绪曲线，得出初步方向与剧本大纲。剧本阶段调用 Codex 的剧本 skill，在大纲基础上打磨成文学剧本；定稿后先建立资产库，把人物、场景、道具的参考图统一管理，锁住全片一致性。</p>
+        <p style="margin-top:8px">分镜阶段用电影分镜 skill 拆 46 镜，配合 Image 2 逐镜生成分镜图。生成阶段在 Codex 里调用即梦的 skill 与 CLI，用 Seedance 模型逐镜出片，每镜生成后逐秒扫帧质检。声音阶段用 MiniMax 建立声音资产，角色声线统一管理、逐镜对位。收尾再用 Muse 补生成一些补充镜头，最后由人工进行后期剪辑拼接，完成声音合成与片名落版。</p>
+      </div>
+
+      <h3 class="blk">制作方式 · 七个环节</h3>
+      <div class="shots">
+        <div class="shot"><div class="n">01</div><div><b>前期拆解</b><span>用 Muse 监测大盘素材方向和同类题材的流量走势，对筛选出的爆款逐条拆解脚本结构、钩子设置、节奏和情绪曲线，得出初步方向与剧本大纲。</span></div></div>
+        <div class="shot"><div class="n">02</div><div><b>文学剧本</b><span>调用 Codex 的剧本 skill，在大纲基础上打磨成文学剧本。</span></div></div>
+        <div class="shot"><div class="n">03</div><div><b>资产库</b><span>定稿后先建立资产库，把人物、场景、道具的参考图统一管理，锁住全片一致性。</span></div></div>
+        <div class="shot"><div class="n">04</div><div><b>分镜</b><span>用电影分镜 skill 拆 46 镜，配合 Image 2 逐镜生成分镜图。</span></div></div>
+        <div class="shot"><div class="n">05</div><div><b>生成与质检</b><span>在 Codex 里调用即梦的 skill 与 CLI，用 Seedance 模型逐镜出片，每镜生成后逐秒扫帧质检。</span></div></div>
+        <div class="shot"><div class="n">06</div><div><b>声音</b><span>用 MiniMax 建立声音资产，角色声线统一管理、逐镜对位。</span></div></div>
+        <div class="shot"><div class="n">07</div><div><b>补镜与后期</b><span>用 Muse 补生成补充镜头，人工进行后期剪辑拼接，完成声音合成与片名落版。</span></div></div>
+      </div>
+      <p style="margin:14px 0 0;font-size:13.5px;color:var(--accent);font-weight:700">爆款拆解 · 资产库一致性管理 · 逐镜生成与逐秒扫帧质检 · 声音资产统一</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 03 OVERSEAS AGENCY INTERNSHIP · CASE REVIEW ============ -->
 <section id="case2">
   <div class="sec-head">
@@ -772,25 +806,34 @@ footer .quote{margin-top:0}
   </div>
 </section>
 
-<!-- ============ 06 AI SHORTS & WORKFLOW ============ -->
+<!-- ============ 06 MARKETING VIDEO ============ -->
+<section id="case-mktvideo">
+  <div class="sec-head">
+    <div class="case-no">06 — Marketing Video</div>
+    <h2>营销视频</h2>
+    <p>品牌与产品营销短片。完整制作过程见对应主打案例。</p>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="dur">64S · MARKETING VIDEO</div><h3>小裂变 GEO 营销视频</h3><p>小裂变 GEO 营销主题短片，64 秒，3:4 竖屏。定题、文案、分镜、工具链打通、逐镜生成、质检修复到剪辑成片，完整过程见主打案例。</p><p style="margin-top:8px"><a href="#case-geo" style="color:var(--accent);font-weight:700;text-decoration:none">查看主打案例详情 ↑</a></p><div class="vid r34"><video controls playsinline preload="metadata" poster="assets/video/geo-xiaoliebian-poster.jpg" src="assets/video/geo-xiaoliebian.mp4" aria-label="小裂变 GEO 营销视频 · 64 秒 · 3:4"></video><a class="vid-open" href="assets/video/geo-xiaoliebian.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+  </div>
+</section>
+
+<!-- ============ 07 AI SHORTS & WORKFLOW ============ -->
 <section id="case3">
   <div class="sec-head">
-    <div class="case-no">06 — AI Workflow</div>
+    <div class="case-no">07 — AI Workflow</div>
     <h2>AI 创意短片与工作流</h2>
     <p>2022 年起持续使用 AI 工具。生成环节按固定提示词规范与工作流执行，下面每条作品对应一套可复现的流程。</p>
   </div>
 
   <div class="cards" style="margin-bottom:12px">
-    <div class="card"><div class="dur">3 MIN 44S · AI SHORT FILM</div><h3>《到了，说一声》</h3><p>双时空情感短片，约 3 分 44 秒，全片制作周期 12 小时。先用 Muse 做前期拆解：监测大盘素材方向和同类题材的流量走势，再对筛选出的爆款逐条拆解，拆脚本结构、钩子设置、节奏和情绪曲线，得出初步方向与剧本大纲。剧本阶段调用 Codex 的剧本 skill，在大纲基础上打磨成文学剧本；定稿后先建立资产库，把人物、场景、道具的参考图统一管理，锁住全片一致性。</p><p style="margin-top:8px">分镜阶段用电影分镜 skill 拆 46 镜，配合 Image 2 逐镜生成分镜图。生成阶段在 Codex 里调用即梦的 skill 与 CLI，用 Seedance 模型逐镜出片，每镜生成后逐秒扫帧质检。声音阶段用 MiniMax 建立声音资产，角色声线统一管理、逐镜对位。收尾再用 Muse 补生成一些补充镜头，最后由人工进行后期剪辑拼接，完成声音合成与片名落版。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/daole-poster.jpg" src="assets/video/daole-shuoyisheng.mp4" aria-label="《到了，说一声》成片 · 3 分 44 秒 · 16:9"></video><a class="vid-open" href="assets/video/daole-shuoyisheng.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
+    <div class="card"><div class="dur">3 MIN 44S · AI SHORT FILM</div><h3>《到了，说一声》</h3><p>双时空情感短片，约 3 分 44 秒，全片制作周期 12 小时。中国好创意 AIGC 专项赛「筑梦丝路·数启华章」参赛作品，完整制作流程见主打案例。</p><p style="margin-top:8px"><a href="#case-film" style="color:var(--accent);font-weight:700;text-decoration:none">查看主打案例详情 ↑</a></p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/daole-poster.jpg" src="assets/video/daole-shuoyisheng.mp4" aria-label="《到了，说一声》成片 · 3 分 44 秒 · 16:9"></video><a class="vid-open" href="assets/video/daole-shuoyisheng.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
     <div class="card"><div class="dur">2 MIN 36S · AI SHORT FILM</div><h3>《我在唐朝丝路送快递》</h3><p>全程用 Muse 制作，剧本、分镜、逐镜生成、拼接、配音都在里面完成，视频由 Muse 内置视频模型逐镜生成。动手前先做前期拆解：监测同类题材的大盘素材方向与流量走势，对爆款逐条拆解脚本结构、钩子设置和叙事节奏，定下方向后再写剧本。制作周期 5 小时，成本 0 元。Muse 的一个优势是能在一个对话里把写作、生成和文件处理串成一条完整的工作流，长任务可以连续跑完，不用人守着一步步切换工具。成片 2 分 36 秒，1080P。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/tangchao-poster.jpg" src="assets/video/tangchao-kuaidi.mp4" aria-label="《我在唐朝丝路送快递》成片 · 2 分 36 秒 · 16:9"></video><a class="vid-open" href="assets/video/tangchao-kuaidi.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
   </div>
 
-  <div class="cards c3 film-trio">
-    <div class="card film-card"><div class="dur">AIGC SHORT FILM · IN PROGRESS</div><h3>《光织丝路》</h3><p>以宝相花纹样为核心意象的丝路题材短片。</p><p style="margin-top:8px">中国好创意 AIGC 专项赛「筑梦丝路·数启华章」参赛作品<span class="badge gray">创作中</span></p><div class="film-foot"><div class="film-media"><img loading="lazy" src="assets/img/silkroad-guangzhi-title.jpg" alt="《光织丝路》标题卡：星空下宝相花纹样与丝路古城"></div></div></div>
-    <div class="card film-card"><div class="dur">AIGC SHORT FILM · IN PROGRESS</div><h3>《迟到一千年的信》</h3><p>一封家书跨越千年的接力故事。</p><p style="margin-top:8px">中国好创意 AIGC 专项赛「筑梦丝路·数启华章」参赛作品<span class="badge gray">创作中</span></p><div class="film-foot"><div class="film-media"><img loading="lazy" src="assets/img/silkroad-letter-title.jpg" alt="《迟到一千年的信》标题卡：老城院落、果树与远山城墙"></div></div></div>
+  <div class="cards c3">
     <div class="card film-card"><div class="film-txt"><div class="dur">5 MIN · AI SHORT FILM</div><h3>《丁香钟》</h3><p>5 分钟 AI 剧情短片 · 原创故事。<span class="badge gray">创作中</span></p></div><div class="film-foot"><div class="dlrow"><a class="btn" href="assets/docs/dingxiangzhong-final.docx" download>↓ 《丁香钟》终稿（DOCX）</a></div></div></div>
-  </div>
-  <div class="cards c3" style="margin-top:12px">
     <div class="card"><div class="dur">48s · AI SHORT FILM</div><h3>娃哈哈 45s 小短片</h3><p>实际成片 48 秒。含本人自写提示词生成的分镜图与人物形象，先定分镜再生成，画面可控而非随机。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/wahaha-poster.jpg" src="assets/video/wahaha.mp4" aria-label="娃哈哈小短片成片 · 48 秒 · 16:9"></video><a class="vid-open" href="assets/video/wahaha.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
     <div class="card"><div class="dur">45s · AI CREATIVE</div><h3>蜜雪冰城「剑琴书」创意视频</h3><p>用提示词先定人物装造，再做场景建模保全片统一，配九宫格剧照——解决 AI 视频最常见的「人物每镜变脸、场景漂移」。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/mixue-poster.jpg" src="assets/video/mixue.mp4" aria-label="蜜雪冰城『剑琴书』创意视频成片 · 45 秒 · 16:9"></video><a class="vid-open" href="assets/video/mixue.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
     <div class="card"><div class="dur">15s · AI + LIVE ACTION</div><h3>AI＋实拍「炸货」创意小广告</h3><p>本人形象与实拍图结合生成分镜：真人实拍保真实感，AI 补齐实拍拍不出的画面。</p><div class="vid"><video controls playsinline preload="metadata" poster="assets/video/zhahuo-poster.jpg" src="assets/video/zhahuo.mp4" aria-label="AI＋实拍「炸货」创意小广告成片 · 15 秒 · 16:9"></video><a class="vid-open" href="assets/video/zhahuo.mp4" target="_blank" rel="noopener">内嵌播放无反应时，<b>点这里直接打开视频 ↗</b></a></div></div>
@@ -855,10 +898,10 @@ footer .quote{margin-top:0}
   <div class="quote">提示词按固定规范编写，同一需求的重复生成次数可控；生成结果经高清增强与局部重绘后交付，出片成本与周期可预估。<small>—— 本人作品心得提炼</small></div>
 </section>
 
-<!-- ============ 07 BRAND AI OPS ============ -->
+<!-- ============ 08 BRAND AI OPS ============ -->
 <section id="case-brand">
   <div class="sec-head">
-    <div class="case-no">07 — Flagship · Self-run Brand</div>
+    <div class="case-no">08 — Flagship · Self-run Brand</div>
     <h2>自营电商品牌 · AI 内容运营实战<span class="badge">旗舰案例</span></h2>
     <p>自营独版水晶抖店，首波 15 款，一人运营，产品每条唯一、售出即下架。运营全程使用 AI 工作流：获客阶段用 AI 整理用户高频问题，提前生产内容并备好私信话术；方案阶段用 AI 生成排期与文案初稿，本人审核定版；素材阶段实拍产品本体，AI 生成背景图；复盘阶段用 AI 汇总投放数据与评论，据此调整后续内容；投流环节采用 AI 投流：AI 核算单条利润、制定投放方案（预算与加量、停投规则），本人审核后执行，按数据迭代优化。</p>
   </div>
@@ -1009,7 +1052,7 @@ footer .quote{margin-top:0}
       <div class="flink"><b>飞书深挖版（过程材料）</b>双语脚本原文、prompt 库、复盘表在飞书深挖版里，面试深挖时打开。链接：<span style="border-bottom:1px dashed var(--line2)">待本人填入飞书文档链接</span></div>
       <div class="flink"><b>联系我</b>邮箱：linxx8393@gmail.com（点击首屏按钮可复制）<br>电话 / 微信：13218968393（同号） · 期望城市：南京 / 杭州 / 深圳</div>
     </div>
-    <p class="wip">图片已全部嵌入本页；视频已全部嵌入 11 条 · 林新翔 · 2027 届</p>
+    <p class="wip">图片已全部嵌入本页；视频已全部嵌入 17 条 · 林新翔 · 2027 届</p>
   </div>
 </footer>
 
